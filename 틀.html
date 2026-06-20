@@ -6,6 +6,13 @@
   <title>{{title}}</title>
   <meta name="robots" content="index,follow">
   <meta name="description" content="{{meta}}">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="{{title}}">
+  <meta property="og:description" content="{{meta}}">
+  <meta property="og:url" content="{{페이지url}}">
+  <meta property="og:image" content="https://ssock.kr/img/sk-interior.webp">
+  <meta property="og:image:width" content="2048">
+  <meta property="og:image:height" content="1365">
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="preconnect" href="https://nam.veta.naver.com" crossorigin>
   <link rel="preload" as="style" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css" onload="this.onload=null;this.rel='stylesheet'">
@@ -224,22 +231,26 @@
     .sk-cur-item::before { content:'·'; flex-shrink:0; margin-top:1px; color:#FF4714; font-weight:900; }
     .sk-cur-item strong { color:#fff; font-weight:700; }
 
+    /* ── AI 이미지 ── */
+    .sk-ai-img-wrap { padding: 0 24px 56px; background: #fff; }
+    .sk-ai-img { border-radius: 20px; max-width: 720px; margin: 0 auto; width: 100%; display: block; }
+
     /* ── 추천 ── */
     .sk-rec-section { padding:72px 20px 80px; background:#fff; }
     .sk-rec-inner { max-width:900px; margin:0 auto; }
-    .sk-rec-eyebrow { margin-bottom:12px; text-align:center; color:#FF4714; font-weight:900; letter-spacing:.14em; text-transform:uppercase; font-size:.72rem; }
-    .sk-rec-title { line-height:1.35; margin-bottom:48px; font-size:clamp(1.6rem,4vw,2.2rem); font-weight:900; text-align:center; color:#111; letter-spacing:-.04em; }
-    .sk-rec-cards { gap:16px; display:flex; flex-direction:column; }
-    @media(min-width:640px){ .sk-rec-cards{ flex-direction:row; gap:18px; } .sk-rec-card{ flex:1; } }
-    .sk-rec-card { gap:14px; overflow:hidden; position:relative; flex-direction:column; background:#fafafa; padding:28px 24px 26px; border-radius:20px; display:flex; border:1px solid #f0f0f0; }
-    .sk-rec-card::before { left:0; top:0; height:3px; position:absolute; background:linear-gradient(90deg,#FF4714,#f5b11a); right:0; content:''; }
+    .sk-rec-eyebrow { text-transform:uppercase; margin-bottom:12px; font-size:.72rem; font-weight:900; letter-spacing:.14em; color:#FF4714; text-align:center; }
+    .sk-rec-title { line-height:1.35; font-size:clamp(1.6rem,4vw,2.2rem); letter-spacing:-.04em; margin-bottom:48px; text-align:center; font-weight:900; color:#111; }
+    .sk-rec-cards { gap:16px; flex-direction:column; display:flex; }
+    @media(min-width:640px){ .sk-rec-cards{ gap:18px; flex-direction:row; } .sk-rec-card{ flex:1; } }
+    .sk-rec-card { border:1px solid #f0f0f0; background:#fafafa; flex-direction:column; overflow:hidden; padding:28px 24px 26px; position:relative; display:flex; border-radius:20px; gap:14px; }
+    .sk-rec-card::before { background:linear-gradient(90deg,#FF4714,#f5b11a); left:0; position:absolute; top:0; content:''; height:3px; right:0; }
     .sk-rec-num { font-size:2.6rem; font-weight:900; background:linear-gradient(135deg,#FF4714,#f5b11a); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; line-height:1; }
-    .sk-rec-card-title { font-weight:900; line-height:1.45; color:#111; font-size:1.08rem; }
-    .sk-rec-card-desc { font-size:.83rem; flex:1; color:#888; line-height:1.75; }
-    .sk-rec-check { border-radius:8px; font-size:.82rem; gap:7px; color:#444; padding:8px 12px; display:flex; font-weight:700; background:#fff5f2; align-items:center; }
-    .sk-rec-check::before { content:'✓'; font-size:.9rem; color:#FF4714; flex-shrink:0; font-weight:900; }
-    .sk-rec-footer { background:linear-gradient(135deg,#fff7f4,#fffdf0); border:1px solid #fde8df; border-radius:16px; padding:28px 24px; margin-top:44px; text-align:center; }
-    .sk-rec-footer-text { font-weight:700; font-size:clamp(1rem,3vw,1.18rem); color:#111; line-height:1.7; }
+    .sk-rec-card-title { font-size:1.08rem; line-height:1.45; font-weight:900; color:#111; }
+    .sk-rec-card-desc { color:#888; font-size:.83rem; line-height:1.75; flex:1; }
+    .sk-rec-check { display:flex; font-size:.82rem; color:#444; gap:7px; padding:8px 12px; align-items:center; border-radius:8px; font-weight:700; background:#fff5f2; }
+    .sk-rec-check::before { font-weight:900; color:#FF4714; font-size:.9rem; flex-shrink:0; content:'✓'; }
+    .sk-rec-footer { margin-top:44px; background:linear-gradient(135deg,#fff7f4,#fffdf0); border:1px solid #fde8df; text-align:center; padding:28px 24px; border-radius:16px; }
+    .sk-rec-footer-text { line-height:1.7; font-weight:700; font-size:clamp(1rem,3vw,1.18rem); color:#111; }
     .sk-rec-footer-hl { background:linear-gradient(90deg,#FF4714,#f5b11a); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; font-weight:900; }
 
     /* ── SECTIONS COMMON (유동 영역) ── */
@@ -248,18 +259,18 @@
     .sk-sec-dark { background: #f7f7f8; }
     .sk-sec-light { background: #fdfcf8; }
     .sk-sec-mid { background: #f4f4ee; }
-    .sk-sec h2 { font-size: clamp(1.6rem, 3.5vw, 2.2rem); word-break: keep-all; color: #111; font-weight: 900; letter-spacing: -.03em; margin-bottom: 20px; line-height: 1.3; }
-    .sk-sec h3 { line-height: 1.5; margin-bottom: 16px; font-weight: 900; font-size: 1.05rem; color: #111; margin-top: 28px; }
-    .sk-sec-divider { border-radius: 2px; margin-bottom: 24px; width: 48px; background: #FF4714; height: 3px; }
-    .sk-body-text { font-size: 1rem; color: #555; line-height: 1.85; word-break: keep-all; }
-    .sk-text-card { padding: 36px 32px; margin-top: 24px; border-radius: 20px; background: #f0f0f0; border: 1px solid rgba(0,0,0,.08); }
-    .sk-text-card-light { border: 1px solid #e8e8e8; background: #fff; box-shadow: 0 4px 24px rgba(0,0,0,.06); border-radius: 20px; margin-top: 24px; padding: 36px 32px; }
-    .sk-check-list { margin-top: 24px; display: flex; flex-direction: column; gap: 13px; list-style: none; }
-    .sk-check-item { line-height: 1.55; align-items: flex-start; font-weight: 700; display: flex; color: #444; gap: 12px; font-size: .9rem; }
-    .sk-check-icon { flex-shrink: 0; color: #FF4714; margin-top: 2px; font-weight: 900; }
-    .sk-grade-grid { grid-template-columns: 1fr; display: grid; max-width: 960px; margin: 32px auto 0; gap: 24px; }
+    .sk-sec h2 { color: #111; word-break: keep-all; font-weight: 900; font-size: clamp(1.6rem, 3.5vw, 2.2rem); letter-spacing: -.03em; line-height: 1.3; margin-bottom: 20px; }
+    .sk-sec h3 { margin-top: 28px; margin-bottom: 16px; line-height: 1.5; font-size: 1.05rem; color: #111; font-weight: 900; }
+    .sk-sec-divider { height: 3px; background: #FF4714; width: 48px; margin-bottom: 24px; border-radius: 2px; }
+    .sk-body-text { font-size: 1rem; word-break: keep-all; line-height: 1.85; color: #555; }
+    .sk-text-card { padding: 36px 32px; border-radius: 20px; margin-top: 24px; background: #f0f0f0; border: 1px solid rgba(0,0,0,.08); }
+    .sk-text-card-light { border: 1px solid #e8e8e8; margin-top: 24px; background: #fff; box-shadow: 0 4px 24px rgba(0,0,0,.06); border-radius: 20px; padding: 36px 32px; }
+    .sk-check-list { list-style: none; flex-direction: column; display: flex; margin-top: 24px; gap: 13px; }
+    .sk-check-item { font-size: .9rem; color: #444; gap: 12px; line-height: 1.55; display: flex; align-items: flex-start; font-weight: 700; }
+    .sk-check-icon { flex-shrink: 0; color: #FF4714; font-weight: 900; margin-top: 2px; }
+    .sk-grade-grid { margin: 32px auto 0; gap: 24px; grid-template-columns: 1fr; display: grid; max-width: 960px; }
     @media (min-width: 640px) { .sk-grade-grid { grid-template-columns: repeat(3,1fr); } }
-    .sk-grade-card { padding: 4px; overflow: hidden; opacity: 0; box-shadow: 0 8px 32px rgba(0,0,0,.07); background: #fff; border-radius: 24px; transition: all .4s ease; position: relative; transform: translateY(30px); animation: fadeInUp .7s ease forwards; }
+    .sk-grade-card { overflow: hidden; animation: fadeInUp .7s ease forwards; transform: translateY(30px); background: #fff; position: relative; opacity: 0; transition: all .4s ease; border-radius: 24px; padding: 4px; box-shadow: 0 8px 32px rgba(0,0,0,.07); }
     .sk-grade-card:nth-child(1) { animation-delay: .1s; }
     .sk-grade-card:nth-child(2) { animation-delay: .25s; }
     .sk-grade-card:nth-child(3) { animation-delay: .4s; }
@@ -267,72 +278,73 @@
     .sk-grade-card-1::before { background: linear-gradient(135deg,#3B82F6,#8B5CF6); }
     .sk-grade-card-2::before { background: linear-gradient(135deg,#FF4714,#EC4899); }
     .sk-grade-card-3::before { background: linear-gradient(135deg,#10B981,#06B6D4); }
-    .sk-grade-card:hover { box-shadow: 0 22px 55px rgba(0,0,0,.12); transform: translateY(-10px); }
-    .sk-grade-badge { z-index: 10; box-shadow: 0 6px 20px rgba(0,0,0,.2); border-radius: 50%; color: #fff; font-size: 1.2rem; justify-content: center; align-items: center; font-weight: 900; display: flex; position: absolute; width: 56px; top: -12px; right: 24px; height: 56px; }
+    .sk-grade-card:hover { transform: translateY(-10px); box-shadow: 0 22px 55px rgba(0,0,0,.12); }
+    .sk-grade-badge { height: 56px; align-items: center; box-shadow: 0 6px 20px rgba(0,0,0,.2); top: -12px; justify-content: center; font-weight: 900; z-index: 10; font-size: 1.2rem; color: #fff; right: 24px; border-radius: 50%; width: 56px; position: absolute; display: flex; }
     .sk-grade-card-1 .sk-grade-badge { background: linear-gradient(135deg,#3B82F6,#8B5CF6); }
     .sk-grade-card-2 .sk-grade-badge { background: linear-gradient(135deg,#FF4714,#EC4899); }
     .sk-grade-card-3 .sk-grade-badge { background: linear-gradient(135deg,#10B981,#06B6D4); }
-    .sk-grade-content { border-radius: 20px; padding: 40px 24px 32px; background: #fff; }
-    .sk-grade-title { margin-bottom: 12px; font-weight: 900; color: #111; font-size: 1.6rem; }
-    .sk-grade-divider { border-radius: 2px; margin-bottom: 16px; width: 40px; transition: width .3s; height: 3px; }
+    .sk-grade-content { background: #fff; padding: 40px 24px 32px; border-radius: 20px; }
+    .sk-grade-title { margin-bottom: 12px; font-size: 1.6rem; font-weight: 900; color: #111; }
+    .sk-grade-divider { transition: width .3s; width: 40px; margin-bottom: 16px; height: 3px; border-radius: 2px; }
     .sk-grade-card-1 .sk-grade-divider { background: linear-gradient(90deg,#3B82F6,#8B5CF6); }
     .sk-grade-card-2 .sk-grade-divider { background: linear-gradient(90deg,#FF4714,#EC4899); }
     .sk-grade-card-3 .sk-grade-divider { background: linear-gradient(90deg,#10B981,#06B6D4); }
     .sk-grade-card:hover .sk-grade-divider { width: 64px; }
-    .sk-grade-desc { font-size: .9rem; line-height: 1.65; color: #555; }
-    .sk-table-wrap { border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,.08); margin-top: 28px; overflow-x: auto; overflow: hidden; }
+    .sk-grade-desc { line-height: 1.65; color: #555; font-size: .9rem; }
+    .sk-table-wrap { overflow: hidden; border-radius: 16px; margin-top: 28px; box-shadow: 0 4px 20px rgba(0,0,0,.08); overflow-x: auto; }
     .sk-info-table { width: 100%; border-collapse: collapse; }
     .sk-info-table tr { border-bottom: 1px solid rgba(0,0,0,.07); }
     .sk-info-table tr:last-child { border-bottom: none; }
-    .sk-td-label { white-space: nowrap; width: 120px; font-weight: 700; vertical-align: top; font-size: .88rem; padding: 16px 20px; color: #fff; background: #FF4714; }
-    .sk-td-val { background: #fff; padding: 16px 20px; color: #333; font-size: .92rem; line-height: 1.6; }
-    .sk-faq-wrap { flex-direction: column; gap: 12px; margin-top: 28px; display: flex; }
-    .sk-faq-item { background: #fff; overflow: hidden; border-radius: 14px; border: 1px solid #e5e5e5; }
-    .sk-faq-q { text-align: left; cursor: pointer; padding: 20px 22px; justify-content: space-between; font-family: inherit; font-weight: 700; align-items: flex-start; width: 100%; border: none; display: flex; color: #111; gap: 12px; background: none; font-size: .95rem; }
-    .sk-faq-arrow { flex-shrink: 0; margin-top: 2px; font-size: 1rem; transition: transform .3s; color: #FF4714; }
+    .sk-td-label { font-size: .88rem; font-weight: 700; white-space: nowrap; width: 120px; vertical-align: top; color: #fff; background: #FF4714; padding: 16px 20px; }
+    .sk-td-val { line-height: 1.6; font-size: .92rem; color: #333; background: #fff; padding: 16px 20px; }
+    .sk-faq-wrap { margin-top: 28px; display: flex; gap: 12px; flex-direction: column; }
+    .sk-faq-item { overflow: hidden; border: 1px solid #e5e5e5; background: #fff; border-radius: 14px; }
+    .sk-faq-q { cursor: pointer; width: 100%; font-family: inherit; font-weight: 700; gap: 12px; border: none; font-size: .95rem; align-items: flex-start; text-align: left; background: none; justify-content: space-between; display: flex; color: #111; padding: 20px 22px; }
+    .sk-faq-arrow { margin-top: 2px; color: #FF4714; transition: transform .3s; font-size: 1rem; flex-shrink: 0; }
     .sk-faq-item.sk-open .sk-faq-arrow { transform: rotate(180deg); }
-    .sk-faq-a { display: none; line-height: 1.75; padding: 0 22px 18px; color: #555; font-size: .9rem; }
+    .sk-faq-a { color: #555; display: none; padding: 0 22px 18px; line-height: 1.75; font-size: .9rem; }
     .sk-faq-item.sk-open .sk-faq-a { display: block; }
 
     /* ── 링크 섹션 ── */
-    .sk-lk-section { border-bottom: 1px solid #ebebeb; background: #f8f8f6; padding: 64px 24px 56px; }
-    .sk-lk-eyebrow { text-transform: uppercase; color: #FF4714; font-weight: 900; letter-spacing: .22em; margin-bottom: 12px; display: block; font-size: .68rem; }
-    .sk-lk-section h2 { font-weight: 900; margin-bottom: 36px; line-height: 1.25; font-size: clamp(1.5rem, 3.5vw, 2.1rem); color: #111; letter-spacing: -.04em; }
+    .sk-lk-section { padding: 64px 24px 56px; background: #f8f8f6; border-bottom: 1px solid #ebebeb; }
+    .sk-lk-eyebrow { font-size: .68rem; color: #FF4714; margin-bottom: 12px; letter-spacing: .22em; display: block; font-weight: 900; text-transform: uppercase; }
+    .sk-lk-section h2 { color: #111; font-weight: 900; line-height: 1.25; letter-spacing: -.04em; font-size: clamp(1.5rem, 3.5vw, 2.1rem); margin-bottom: 36px; }
+    #sk-lk-section h3 { color: #111; margin-bottom: 36px; font-size: clamp(1.5rem, 3.5vw, 2.1rem); letter-spacing: -.04em; line-height: 1.25; font-weight: 900; }
     .sk-lk-group { margin-bottom: 28px; }
     .sk-lk-group:last-child { margin-bottom: 0; }
-    .sk-lk-h3 { margin-bottom: 12px; color: #FF4714; font-weight: 900; border-bottom: 2px solid #FF4714; display: block; letter-spacing: .18em; padding-bottom: 10px; font-size: .72rem; text-transform: uppercase; }
-    .sk-lk-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(148px, 1fr)); gap: 10px; }
-    .sk-lk-item { font-size: .84rem; height: 52px; display: block; text-decoration: none; overflow: hidden; border: 1.5px solid #e8e8e8; padding: 0 16px; font-weight: 700; background: #fff; text-align: center; white-space: nowrap; text-overflow: ellipsis; transition: all .2s; color: #333; line-height: 52px; box-shadow: 0 2px 8px rgba(0,0,0,.04); border-radius: 12px; }
-    .sk-lk-item:hover { transform: translateY(-2px); border-color: #FF4714; background: #FF4714; box-shadow: 0 6px 20px rgba(255,71,20,.28); color: #fff; }
+    .sk-lk-h3 { display: block; font-size: .72rem; margin-bottom: 12px; padding-bottom: 10px; color: #FF4714; border-bottom: 2px solid #FF4714; text-transform: uppercase; letter-spacing: .18em; font-weight: 900; }
+    .sk-lk-grid { gap: 10px; grid-template-columns: repeat(auto-fill, minmax(148px, 1fr)); display: grid; }
+    .sk-lk-item { text-align: center; color: #333; padding: 0 16px; height: 52px; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; font-weight: 700; background: #fff; text-decoration: none; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,.04); transition: all .2s; display: block; line-height: 52px; font-size: .84rem; border: 1.5px solid #e8e8e8; }
+    .sk-lk-item:hover { background: #FF4714; box-shadow: 0 6px 20px rgba(255,71,20,.28); color: #fff; border-color: #FF4714; transform: translateY(-2px); }
     @media (max-width: 480px) {
       .sk-lk-section { padding: 48px 20px 44px; }
-      .sk-lk-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
-      .sk-lk-item { height: 48px; font-size: .82rem; line-height: 48px; }
+      .sk-lk-grid { gap: 8px; grid-template-columns: repeat(2, 1fr); }
+      .sk-lk-item { font-size: .82rem; line-height: 48px; height: 48px; }
       .sk-monologue { font-size: 1.35rem; }
       .sk-fact-title { font-size: 1.9rem; }
     }
 
     /* ── 방법론 이미지 ── */
     .sk-method-section { background: #fff; padding: 0 24px 72px; }
-    .sk-method-inner { max-width: 480px; margin: 0 auto; }
-    .sk-method-img { box-shadow: 0 8px 28px rgba(0,0,0,.10); border-radius: 20px; width: 100%; display: block; }
+    .sk-method-inner { margin: 0 auto; max-width: 480px; }
+    .sk-method-img { display: block; box-shadow: 0 8px 28px rgba(0,0,0,.10); width: 100%; border-radius: 20px; }
 
     /* ssock.kr micro-variation */
     .sk-sec { padding: 90px 28px; }
     .sk-planner-section { padding: 88px 28px 98px; }
     .sk-brand-header { padding: 74px 28px 30px; }
-    .sk-text-card { border-radius: 20px; padding: 34px 32px; }
-    .sk-text-card-light { padding: 34px 32px; border-radius: 20px; }
+    .sk-text-card { padding: 34px 32px; border-radius: 20px; }
+    .sk-text-card-light { border-radius: 20px; padding: 34px 32px; }
     .sk-faq-item { border-radius: 12px; }
-    .sk-rec-card { border-radius: 20px; padding: 26px 24px 24px; }
+    .sk-rec-card { padding: 26px 24px 24px; border-radius: 20px; }
     .sk-body-text { line-height: 1.81; }
-    .sk-monologue { line-height: 1.47; font-size: 1.55rem; }
+    .sk-monologue { font-size: 1.55rem; line-height: 1.47; }
     .sk-faq-a { line-height: 1.79; }
     .sk-rec-card-desc { line-height: 1.71; }
-    .sk-header-logo { color: #FF4714; font-size: 1.4rem; letter-spacing: -.03em; }
+    .sk-header-logo { font-size: 1.4rem; letter-spacing: -.03em; color: #FF4714; }
     /* dynamic section */
     .sk-sec h2 { letter-spacing: -.01em; line-height: 1.25; }
-    .sk-sec-divider { height: 4px; border-radius: 99px; width: 56px; background: linear-gradient(90deg,#FF4714,#f5b11a); }
+    .sk-sec-divider { background: linear-gradient(90deg,#FF4714,#f5b11a); border-radius: 99px; width: 56px; height: 4px; }
     .sk-sec-light { background: #fefefe; }
     .sk-sec-dark { background: #f8f8f8; }
     .sk-sec-mid { background: #f4f4ee; }
@@ -442,7 +454,7 @@
     <p class="sk-monologue">어떻게 해야 할지<br>다녀도 모르겠어요...</p>
     <p class="sk-monologue">공부하려는 의지가<br>없어서 걱정이에요...</p>
     <div class="sk-fact-box">
-      <p class="sk-fact-title">현재 다니는 학원</p>
+      <p class="sk-fact-title">{{지역}} {{키워드}}</p>
       <p class="sk-fact-title"><span class="sk-simple-underline">이거 되는 곳인가요?</span></p>
     </div>
   </div>
@@ -738,6 +750,8 @@
   </div>
 </section>
 
+{{랜덤이미지섹션}}
+
 <section class="sk-planner-section">
   <div class="sk-planner-inner">
     <p class="sk-planner-eyebrow">ACADEMY LOCATION</p>
@@ -763,7 +777,7 @@
      유동 영역 (DYNAMIC — result.html JSON)
      ════════════════════════════════════════════ -->
 
-<section class="sk-sec sk-sec-light">
+<section class="sk-sec sk-sec-light" id="sec1">
   <div class="sk-sec-inner">
     <div class="sk-sec-divider"></div>
     <h2>{{section1.h2}}</h2>
@@ -777,7 +791,7 @@
   </div>
 </section>
 
-<section class="sk-sec sk-sec-dark">
+<section class="sk-sec sk-sec-dark" id="sec2">
   <div class="sk-sec-inner">
     <div class="sk-sec-divider"></div>
     <h2>{{section2.h2}}</h2>
@@ -812,10 +826,10 @@
   </div>
 </section>
 
-<section class="sk-sec sk-sec-mid">
+<section class="sk-sec sk-sec-mid" id="sec3">
   <div class="sk-sec-inner">
     <div class="sk-sec-divider"></div>
-    <h2>{{section3.h2}}</h2>
+    <h2>{{지역}} 관리 학교</h2>
     <p class="sk-body-text">{{section3.p}}</p>
     <ul class="sk-check-list">
       <li class="sk-check-item"><span class="sk-check-icon">✓</span>{{section3.1}}</li>
@@ -825,7 +839,7 @@
   </div>
 </section>
 
-<section class="sk-sec sk-sec-light">
+<section class="sk-sec sk-sec-light" id="sec4">
   <div class="sk-sec-inner">
     <div class="sk-sec-divider"></div>
     <h2>{{section4.h2}}</h2>
@@ -835,7 +849,7 @@
   </div>
 </section>
 
-<section class="sk-sec sk-sec-dark">
+<section class="sk-sec sk-sec-dark" id="sec5">
   <div class="sk-sec-inner">
     <div class="sk-sec-divider"></div>
     <h2>{{section5.h2}}</h2>
@@ -843,7 +857,7 @@
   </div>
 </section>
 
-<section class="sk-sec sk-sec-mid">
+<section class="sk-sec sk-sec-mid" id="sec6">
   <div class="sk-sec-inner">
     <div class="sk-sec-divider"></div>
     <h2>{{section6.h2}}</h2>
@@ -851,7 +865,7 @@
   </div>
 </section>
 
-<section class="sk-sec sk-sec-light">
+<section class="sk-sec sk-sec-light" id="sec7">
   <div class="sk-sec-inner">
     <div class="sk-sec-divider"></div>
     <h2>{{section7.h2}}</h2>
@@ -861,7 +875,7 @@
   </div>
 </section>
 
-<section class="sk-sec sk-sec-dark">
+<section class="sk-sec sk-sec-dark" id="sec8">
   <div class="sk-sec-inner">
     <div class="sk-sec-divider"></div>
     <h2>{{section8.h2}}</h2>
@@ -874,7 +888,7 @@
 <section class="sk-sec sk-sec-light" id="info">
   <div class="sk-sec-inner">
     <div class="sk-sec-divider"></div>
-    <h2>{{section9.h2}}</h2>
+    <h2>{{지역}} {{키워드}} 정보</h2>
     <div class="sk-table-wrap">
       <table class="sk-info-table">
         <tr>
@@ -894,7 +908,7 @@
   </div>
 </section>
 
-<section class="sk-sec sk-sec-mid">
+<section class="sk-sec sk-sec-mid" id="faq">
   <div class="sk-sec-inner">
     <div class="sk-sec-divider"></div>
     <h2>{{section10.h2}}</h2>
@@ -906,6 +920,7 @@
 
 {{링크섹션}}
 
+{{학교ld}}
 
 <!-- ════════════════════════════════════════════
      스크립트
